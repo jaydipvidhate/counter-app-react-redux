@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
+import { decriCount, incriCount, resetCount } from "./action";
 
 function App() {
+  const dispatch = useDispatch();
+  const count = useSelector((data) => data.count);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <h3 className="counterTitle">Counter App</h3>
+      <h6 className="countValue">{count}</h6>
+      <div className="buttonsWrapper">
+        <button
+          onClick={() => dispatch(incriCount())}
+          className="actionButtons"
         >
-          Learn React
-        </a>
-      </header>
+          Increment
+        </button>
+        <button
+          onClick={() => dispatch(decriCount())}
+          className="actionButtons"
+        >
+          Decrement
+        </button>
+        <button
+          onClick={() => dispatch(resetCount())}
+          className="actionButtons"
+        >
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
